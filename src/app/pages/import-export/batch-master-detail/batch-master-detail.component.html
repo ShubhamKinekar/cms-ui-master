@@ -1,0 +1,190 @@
+<div class="title">
+  <span class="margin-left-10">Batch Master Form</span>
+  <mat-icon class="pull-left" (click)="onBack()">reply_all</mat-icon>
+</div>
+<form [formGroup]="formInput">
+  <!-- content here -->
+  <div fxLayout="row wrap">
+    <div
+      fxFlex="100"
+      fxFlex.md="100"
+      fxFlex.sm="100"
+      fxFlex.xs="100"
+      fxLayout="column wrap"
+    >
+      <div fxLayout="row wrap" fxLayoutGap="5px">
+        <div fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100" fxLayout="column">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Batch Type<b>*</b> </mat-label>
+            <mat-select formControlName="batchType" placeholder="Batch Type">
+              <mat-option *ngFor="let res of alllovList" [value]="res.value">
+                {{ res.value }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+          <ng-container *ngIf="isModified(properties.batchType)">
+            <mat-error
+              *ngIf="
+                isEmpty(properties.batchType) ||
+                hasWhiteSpace(properties.batchType)
+              "
+            >
+              Batch Type is <strong>required</strong>
+            </mat-error>
+          </ng-container>
+        </div>
+
+        <div fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100" fxLayout="column">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Count<b>*</b> </mat-label>
+            <input
+              matInput
+              placeholder="Count"
+              formControlName="count"
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')"
+            />
+          </mat-form-field>
+          <ng-container *ngIf="isModified(properties.count)">
+            <mat-error
+              *ngIf="
+                isEmpty(properties.count) || hasWhiteSpace(properties.count)
+              "
+            >
+              Count is only number <strong>required</strong>
+            </mat-error>
+          </ng-container>
+        </div>
+
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Operator Id<b>*</b> </mat-label>
+            <input
+              matInput
+              placeholder="Operator Id"
+              formControlName="operatorId"
+            />
+          </mat-form-field>
+          <ng-container *ngIf="isModified(properties.operatorId)">
+            <mat-error
+              *ngIf="
+                isEmpty(properties.operatorId) ||
+                hasWhiteSpace(properties.operatorId)
+              "
+            >
+              Operator Id is <strong>required</strong>
+            </mat-error>
+          </ng-container>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Batch Number<b>*</b> </mat-label>
+            <input
+              matInput
+              placeholder="Batch Number"
+              formControlName="batchNumber"
+              oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')"
+              minlength="8"
+              maxlength="8"
+            />
+          </mat-form-field>
+          <ng-container *ngIf="isModified(properties.batchNumber)">
+            <mat-error
+              *ngIf="
+                isEmpty(properties.batchNumber) ||
+                hasWhiteSpace(properties.batchNumber)
+              "
+            >
+              Please, Enter 8 digit Batch Number is <strong>required</strong>
+            </mat-error>
+          </ng-container>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Start Date</mat-label>
+            <input
+              matInput
+              formControlName="startDate"
+              [matDatepicker]="startDate"
+              placeholder="Start Date"
+            />
+            <mat-datepicker-toggle matSuffix [for]="startDate">
+            </mat-datepicker-toggle>
+            <mat-datepicker #startDate></mat-datepicker>
+          </mat-form-field>
+          <ng-container *ngIf="isModified(properties.startDate)">
+            <mat-error
+              *ngIf="
+                isEmpty(properties.startDate) ||
+                hasWhiteSpace(properties.startDate)
+              "
+            >
+            Start Date is <strong>required</strong>
+            </mat-error>
+          </ng-container>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>End Date</mat-label>
+            <input
+              matInput
+              [max]="today"
+              [min]="minDate"
+              formControlName="endDate"
+              [matDatepicker]="endDate"
+              placeholder="End Date"
+            />
+            <mat-datepicker-toggle matSuffix [for]="endDate">
+            </mat-datepicker-toggle>
+            <mat-datepicker #endDate></mat-datepicker>
+          </mat-form-field>
+          <ng-container *ngIf="isModified(properties.endDate)">
+            <mat-error
+              *ngIf="
+                isEmpty(properties.endDate) || hasWhiteSpace(properties.endDate)
+              "
+            >
+              End Date is <strong>required</strong>
+            </mat-error>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align: center">
+    <button
+      (click)="showPostData()"
+      mat-button
+      mat-raised-button
+      color="primary"
+    >
+      Show List
+    </button>
+    <button
+      (click)="rolePostData()"
+      [disabled]="formInput.invalid"
+      mat-button
+      mat-raised-button
+      color="primary"
+    >
+      Save
+    </button>
+    <button (click)="onBack()" mat-button mat-raised-button>Cancel</button>
+    <!-- <button class="pull-right margin-right-10" mat-button mat-raised-button color="primary">Save</button> -->
+  </div>
+  <br />
+  <br />
+
+  <app-data-table
+    [tableData]="dataSource"
+    [tableColumns]="displayColumns"
+    [isFilterable]="isFilterable"
+    [isPageable]="isPageable"
+    [totalRecords]="totalRecords"
+    [paginationSizes]="paginationSizes"
+    [defaultPageSize]="defaultPageSize"
+    (sort)="sortData($event)"
+    (filter)="filterData($event)"
+    (page)="pageData($event)"
+  >
+  </app-data-table>
+</form>

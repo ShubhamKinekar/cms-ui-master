@@ -1,0 +1,182 @@
+<form [formGroup]="formInput" >
+    <div fxLayout="row wrap" fxLayoutGap="5px">
+        <!-- <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Account Type</mat-label>
+                <mat-select placeholder="Account Type" formControlName="accountType">
+                    <mat-option *ngFor="let accountType of accountTypes" value="{{ accountType.cmsMasterLovId }}">{{ accountType.value }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.accountType)">
+                <mat-error *ngIf="
+              isEmpty(properties.accountType) ||
+              hasWhiteSpace(properties.accountType)
+            ">
+                    Account Type is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+        </div> -->
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Address 1</mat-label>
+                <input matInput placeholder="Address 1" formControlName="add1" />
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.add1)">
+                <mat-error *ngIf="isEmpty(properties.add1) || hasWhiteSpace(properties.add1)">
+                    Address 1 is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="hasError(properties.add1,validationErrorCodes.pattern)">
+                    Address 1 cannot have <strong>comma(,)</strong>
+                </mat-error>
+            </ng-container>
+            <mat-error *ngIf="formInput.controls['add1'].hasError('maxlength')">
+                Address 1 should be 36 min chars <strong>required</strong>
+            </mat-error>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Address 2</mat-label>
+                <input matInput placeholder="Address 2" formControlName="add2" />
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.add2)">
+                <mat-error *ngIf="isEmpty(properties.add2) || hasWhiteSpace(properties.add2)">
+                    Address 2 is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+            <mat-error *ngIf="formInput.controls['add2'].hasError('maxlength')">
+                Address 2 should be 36 min chars <strong>required</strong>
+            </mat-error>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Address 3</mat-label>
+                <input matInput placeholder="Address 3" formControlName="add3" />
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.add3)">
+                <mat-error *ngIf="isEmpty(properties.add3) || hasWhiteSpace(properties.add3)">
+                    Address 3 is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+            <mat-error *ngIf="formInput.controls['add3'].hasError('maxlength')">
+                Address 3 should be 36 min chars <strong>required</strong>
+            </mat-error>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Country</mat-label>
+                <mat-select placeholder="Country" formControlName="countryId" (selectionChange)="onCountryChange($event.value)">
+                    <mat-option *ngFor="let country of countries" [value]="country">{{ country.cmsCountryName }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.countryId)">
+                <mat-error *ngIf="
+            isEmpty(properties.countryId) || hasWhiteSpace(properties.countryId)
+          ">
+                    Country is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+            <mat-error *ngIf="formInput.controls['countryId'].hasError('maxlength')">
+                Country should be 36 min chars <strong>required</strong>
+            </mat-error>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>State</mat-label>
+                <mat-select placeholder="State" formControlName="stateId" (selectionChange)='onStateChange($event.value)'>
+                    <mat-option *ngFor="let state of states" [value]="state">{{ state.cmsStateName }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.stateId)">
+                <mat-error *ngIf="isEmpty(properties.stateId) || hasWhiteSpace(properties.stateId)">
+                    State is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+            <mat-error *ngIf="formInput.controls['stateId'].hasError('maxlength')">
+                State should be 36 min chars <strong>required</strong>
+            </mat-error>
+        </div>
+
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>City</mat-label>
+                <mat-select placeholder="City" formControlName="cityId">
+                    <mat-option *ngFor="let city of cities" [value]="city">{{ city.cmsCityName }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.cityId)">
+                <mat-error *ngIf="isEmpty(properties.cityId) || hasWhiteSpace(properties.cityId)">
+                    City is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+            <mat-error *ngIf="formInput.controls['stateId'].hasError('maxlength')">
+                City should be 36 min chars <strong>required</strong>
+            </mat-error>
+
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label> Zip Code</mat-label>
+                <mat-select placeholder="Zip Code" formControlName="zipId">
+                    <mat-option *ngFor="let zip of zipCodes" [value]="zip">{{ zip.cmsZipName }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.zipId)">
+                <mat-error *ngIf="isEmpty(properties.zipId) || hasWhiteSpace(properties.zipId)">
+                    Zip Code is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+            <mat-error *ngIf="formInput.controls['zipId'].hasError('maxlength')">
+                Zip should be 36 min chars <strong>required</strong>
+            </mat-error>
+
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>BO Sub STATUS(CDSL)</mat-label>
+                <input matInput placeholder="BO Sub STATUS(CDSL)" formControlName="boStatus" />
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.boStatus)">
+                <mat-error *ngIf="isEmpty(properties.boStatus) || hasWhiteSpace(properties.boStatus)">
+                    BO Sub STATUS(CDSL) is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+            <mat-error *ngIf="formInput.controls['boStatus'].hasError('maxlength')">
+                Address should be 36 min chars <strong>required</strong>
+            </mat-error>
+        </div>
+
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>User Remark(NSDL)</mat-label>
+                <mat-select placeholder="User Remark(NSDL)" formControlName="userRemarks">
+                    <mat-option *ngFor="let remark of userRemarks" value="{{ remark.cmsMasterLovId }}">{{ remark.value }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.userRemarks)">
+                <mat-error *ngIf="isEmpty(properties.userRemarks) || hasWhiteSpace(properties.userRemarks)">
+                    User Remark(NSDL) is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+            <mat-error *ngIf="formInput.controls['userRemarks'].hasError('maxlength')">
+                User Remark(NSDL) be 36 min chars <strong>required</strong>
+            </mat-error>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>File Name </mat-label>
+                <input matInput placeholder="File Name" formControlName="fileName" />
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.boStatus)">
+                <mat-error *ngIf="isEmpty(properties.boStatus) || hasWhiteSpace(properties.boStatus)">
+                    File Name is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+            <mat-error *ngIf="formInput.controls['boStatus'].hasError('maxlength')">
+                File Name should be 36 min chars <strong>required</strong>
+            </mat-error>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,15 @@
+<div class="title">
+    <span class="margin-left-10">LovSub Form</span>
+    <mat-icon class="pull-left" (click)="onBack()">reply_all</mat-icon>
+    
+    <!-- <button class="pull-right margin-right-10" mat-button mat-raised-button color="primary" routerLink="/admin/lovsub/details/0">
+      Lovsub
+    </button> -->
+    <!-- <button class="pull-right margin-right-10" mat-button mat-raised-button color="primary" routerLink="/admin/email_idails/0">
+      New LOV
+    </button> -->
+  </div>
+  
+  <app-data-table [tableData]="dataSource" [tableColumns]="displayColumns" [isFilterable]="isFilterable" [isPageable]="isPageable" [totalRecords]="totalRecords" [paginationSizes]="paginationSizes" [defaultPageSize]="defaultPageSize" (sort)="sortData($event)"
+  (filter)="filterData($event)" (page)="pageData($event)" [rowActionIcon]="'info'" (rowAction)="rowAction($event)">
+</app-data-table>

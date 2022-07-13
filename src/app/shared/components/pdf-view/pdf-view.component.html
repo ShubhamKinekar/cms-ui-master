@@ -1,0 +1,26 @@
+<mat-tab-group class="tab margin-left-10">
+    <mat-tab *ngIf="fileUpload1">
+        <ng-template mat-tab-label>
+            <span [title]="fileUpload1">{{ (fileUpload1 && fileUpload1.length>10)? (fileUpload1 | slice:0:10)+'..':(fileUpload1) }}</span>
+            <mat-icon class="margin-left-10" (click)="openLink(fileUpload1)">open_in_new</mat-icon>
+        </ng-template>
+        <object class="responsive-iframe" [data]="safeUrl1" type="application/pdf">
+        </object>
+    </mat-tab>
+    <mat-tab *ngIf="fileUpload2">
+        <ng-template mat-tab-label>
+            <span [title]="fileUpload2">{{ (fileUpload2 && fileUpload2.length>10)? (fileUpload2 | slice:0:10)+'..':(fileUpload2) }}</span>
+            <mat-icon class="margin-left-10" (click)="openLink(fileUpload2)">open_in_new</mat-icon>
+        </ng-template>
+        <object class="responsive-iframe" [data]="safeUrl2" type="application/pdf">
+        </object>
+    </mat-tab>
+    <mat-tab *ngIf="fileUpload3">
+        <ng-template mat-tab-label>
+            <span [title]="fileUpload3">{{ (fileUpload3 && fileUpload3.length>10)? (fileUpload3 | slice:0:10)+'..':(fileUpload3) }}</span>
+            <mat-icon class="margin-left-10" (click)="openLink(fileUpload3)">open_in_new</mat-icon>
+        </ng-template>
+        <object class="responsive-iframe" [data]="safeUrl3" type="application/pdf">
+        </object>
+    </mat-tab>
+</mat-tab-group>

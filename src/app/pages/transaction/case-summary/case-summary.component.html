@@ -1,0 +1,7 @@
+
+<app-case-initiation *ngIf="stage.CaseInitiation == caseStageStatus"></app-case-initiation>
+<app-scrutiny *ngIf="stage.Scrutiny == caseStageStatus"></app-scrutiny>
+<app-data-entry *ngIf="stage.DataEntry == caseStageStatus"></app-data-entry>
+<app-checker  [formTitle]= "'Checker'" *ngIf="stage.Checker == caseStageStatus"></app-checker>
+<app-checker [formTitle]= "'Physical Verification'" *ngIf="stage.PhysicalVerification == caseStageStatus"></app-checker>
+

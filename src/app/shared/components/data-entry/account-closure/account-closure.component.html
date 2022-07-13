@@ -1,0 +1,112 @@
+<form [formGroup]="formInput">
+    <!-- content here -->
+    <div fxLayout="row wrap" fxLayoutGap="5px">
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>DP ID</mat-label>
+                <input matInput placeholder="DP ID" formControlName="dpId" />
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.dpId)">
+                <mat-error *ngIf="isEmpty(properties.dpId) || hasWhiteSpace(properties.dpId)">
+                    DP ID is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label> DP Holding</mat-label>
+                <input matInput placeholder="DP Holding" formControlName="dpHolding" />
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.dpHolding)">
+                <mat-error *ngIf="
+            isEmpty(properties.dpHolding) || hasWhiteSpace(properties.dpHolding)
+          ">
+                    DP Holding is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Target Depository</mat-label>
+                <input matInput placeholder="Target Depository" formControlName="targetDepository" />
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.targetDepository)">
+                <mat-error *ngIf="
+            isEmpty(properties.targetDepository) ||
+            hasWhiteSpace(properties.targetDepository)
+          ">
+                    Target Depository is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Target DP ID</mat-label>
+                <input matInput placeholder="Target DP ID" formControlName="targetDpId" />
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.targetDpId)">
+                <mat-error *ngIf="
+            isEmpty(properties.targetDpId) ||
+            hasWhiteSpace(properties.targetDpId)
+          ">
+                    Target DP ID is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Target Client ID</mat-label>
+                <input matInput placeholder="Target Client ID" formControlName="targetClientId" />
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.targetClientId)">
+                <mat-error *ngIf="
+            isEmpty(properties.targetClientId) ||
+            hasWhiteSpace(properties.targetClientId)
+          ">
+                    Target Client ID is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+        </div>
+
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>PAN No</mat-label>
+                <input matInput placeholder="PAN No" formControlName="panNo" />
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.panNo)">
+                <mat-error *ngIf="isEmpty(properties.panNo) || hasWhiteSpace(properties.panNo)">
+                    PAN No is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>TCS Code</mat-label>
+                <mat-select placeholder="TCS Code" formControlName="tcsCode" >
+                    <mat-option *ngFor="let request of tcsCode" [value]="request.value">{{ request.value }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.tcsCode)">
+                <mat-error *ngIf="isEmpty(properties.tcsCode) || hasWhiteSpace(properties.tcsCode)">
+                    TCS Code is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Trading Closure Status</mat-label>
+                <mat-select placeholder="Trading Closure Status" formControlName="tradingClosureStatus">
+                    <mat-option *ngFor="let request of tradingStatus" [value]="request.value">{{ request.value }}
+                        </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.tradingClosureStatus)">
+                <mat-error
+                    *ngIf="isEmpty(properties.tradingClosureStatus) || hasWhiteSpace(properties.tradingClosureStatus)">
+                    Trading Closure Status is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+        </div>
+    </div>
+</form>

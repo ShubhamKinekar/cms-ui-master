@@ -1,0 +1,109 @@
+<div class="title">
+    <span class="margin-left-10">Process Report</span>
+    <mat-icon class="pull-left" (click)="onBack()">reply_all</mat-icon>
+</div>
+<form [formGroup]="formInput">
+    <div fxLayout="row wrap">
+        <div fxFlex="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" fxLayout="column wrap">
+            <div fxLayout="row wrap" fxLayoutGap="5px">
+                <div fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>User Type </mat-label>
+                        <mat-select placeholder="User Type" formControlName="userType">
+                            <mat-option *ngFor="let userStatus of userlist" [value]="userStatus.employeeId" >
+                                {{userStatus.name}} </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.userType)">
+                        <mat-error *ngIf="
+                isEmpty(properties.userType) ||
+                hasWhiteSpace(properties.userType)
+              ">
+                            User Type is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div>
+                <div fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Case Stage Type</mat-label>
+                        <mat-select placeholder="Case Type" formControlName="caseType" [(ngModel)]="selectedValue" (ngModelChange)="getStageStatus()">
+                            <mat-option *ngFor="let userStatus of userRolelist" [value]="userStatus.value" >
+                                {{userStatus.value}} </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.caseType)">
+                        <mat-error *ngIf="
+                isEmpty(properties.caseType) ||
+                hasWhiteSpace(properties.caseType)
+              ">
+              Case Type is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div>
+                <div fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Case Stage Status </mat-label>
+                        <mat-select placeholder="Case Status" formControlName="caseStatus" >
+                            <mat-option *ngFor="let userStatus of inWordModelist" [value]="userStatus.value" >
+                                {{userStatus.value}} </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.caseStatus)">
+                        <mat-error *ngIf="
+                isEmpty(properties.caseStatus) ||
+                hasWhiteSpace(properties.caseStatus)
+              ">
+              Case Status is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div>
+                <div fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Start Date</mat-label>
+                        <input matInput formControlName="startDate" [matDatepicker]="startDate" placeholder="Start Date" />
+                        <mat-datepicker-toggle matSuffix [for]="startDate">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #startDate></mat-datepicker>
+        
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.startDate)">
+                        <mat-error *ngIf="
+                    isEmpty(properties.startDate) ||
+                    hasWhiteSpace(properties.startDate)
+                  ">
+                  Start Date is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                    </div>
+                    <div fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100" fxLayout="column">
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>End Date</mat-label>
+                            <input matInput formControlName="endDate" [matDatepicker]="endDate" placeholder="End Date" />
+                            <mat-datepicker-toggle matSuffix [for]="endDate">
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #endDate></mat-datepicker>
+            
+                        </mat-form-field>
+                        <ng-container *ngIf="isModified(properties.endDate)">
+                            <mat-error *ngIf="
+                        isEmpty(properties.endDate) ||
+                        hasWhiteSpace(properties.endDate)
+                      ">
+                      End Date is <strong>required</strong>
+                            </mat-error>
+                        </ng-container>
+                        </div>
+            
+            </div>
+        </div>
+    </div>
+    <div>
+        <button class="pull-right margin-right-10" (click)="onBack()" mat-button mat-raised-button>
+            Cancel
+        </button>
+        <button class="pull-right margin-right-10" (click)="userPostData()" [disabled]="formInput.invalid"  mat-button
+            mat-raised-button color="primary">
+            Submit
+        </button>
+    </div>
+</form>

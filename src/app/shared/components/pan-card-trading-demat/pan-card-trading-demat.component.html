@@ -1,0 +1,80 @@
+<div fxLayout="row wrap" fxLayoutGap="5px" [formGroup]="formInput">
+  <div fxFlex="100" fxFlex.lt-md="100" fxFlex.sm="100" fxLayout="column">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>PAN Number<b *ngIf="isPanDetailsRequired">*</b></mat-label>
+      <input matInput placeholder="Pan number" formControlName="panNo" />
+      <mat-icon *ngIf="!disableForm" (click)="searchPanNumber()" matSuffix>search</mat-icon>
+    </mat-form-field>
+    <ng-container *ngIf="isModified(properties.panNo)">
+      <mat-error *ngIf="isEmpty(properties.panNo) || hasWhiteSpace(properties.panNo)">
+        PAN Number is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="hasError(properties.panNo,validationErrorCodes.pattern)">
+        Enter Valid <strong>PAN Number</strong>
+      </mat-error>
+    </ng-container>
+  </div>
+
+  <div fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100" fxLayout="column">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Trading Account Number<b *ngIf="isTrading">*</b></mat-label>
+      <input matInput placeholder="Trading Account Number" formControlName="tradingAccountNo"
+        />
+      <mat-icon *ngIf="!disableForm" (click)="searchPanNumber()" matSuffix>search</mat-icon>
+    </mat-form-field>
+    <ng-container *ngIf="isModified(properties.tradingAccountNo)">
+      <mat-error *ngIf="isEmpty(properties.tradingAccountNo) || hasWhiteSpace(properties.tradingAccountNo)">
+        Trading Account No is <strong>required</strong>
+      </mat-error>
+    </ng-container>
+  </div>
+
+  <div fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100" fxLayout="column">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Demat Account Number<b *ngIf="isDemat">*</b></mat-label>
+      <input matInput placeholder="Demat Account Number" formControlName="dematAccountNo" />
+      <mat-icon *ngIf="!disableForm" (click)="searchPanNumber()" matSuffix>search</mat-icon>
+    </mat-form-field>
+    <ng-container *ngIf="isModified(properties.dematAccountNo)">
+      <mat-error *ngIf="
+isEmpty(properties.dematAccountNo) ||
+hasWhiteSpace(properties.dematAccountNo)
+">
+        Demat Account Number is <strong>required</strong>
+      </mat-error>
+    </ng-container>
+  </div>
+
+  <div fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100" fxLayout="column">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Client Name Trading</mat-label>
+      <input matInput placeholder="Client Name Trading" formControlName="clientNameTrading"
+        />
+      <mat-icon *ngIf="!disableForm" (click)="searchPanNumber()" matSuffix>search</mat-icon>
+    </mat-form-field>
+    <ng-container *ngIf="isModified(properties.clientNameTrading)">
+      <mat-error *ngIf="
+isEmpty(properties.clientNameTrading) ||
+hasWhiteSpace(properties.clientNameTrading)
+">
+        Client Name Trading is <strong>required</strong>
+      </mat-error>
+    </ng-container>
+  </div>
+
+  <div fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100" fxLayout="column">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Client Name Demat</mat-label>
+      <input matInput placeholder="Client Name Demat" formControlName="clientNameDemat" />
+      <mat-icon *ngIf="!disableForm" (click)="searchPanNumber()" matSuffix>search</mat-icon>
+    </mat-form-field>
+    <ng-container *ngIf="isModified(properties.clientNameDemat)">
+      <mat-error *ngIf="
+isEmpty(properties.clientNameDemat) ||
+hasWhiteSpace(properties.clientNameDemat)
+">
+        Client Name Demat is <strong>required</strong>
+      </mat-error>
+    </ng-container>
+  </div>
+</div>

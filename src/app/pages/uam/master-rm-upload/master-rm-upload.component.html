@@ -1,0 +1,74 @@
+<div class="title">
+  <span class="margin-left-10"> RM File Upload Form </span>
+  <mat-icon class="pull-left" (click)="onBack()">reply_all</mat-icon>
+</div>
+<form [formGroup]="formInput">
+  <div fxLayout="row wrap">
+    <div
+      fxFlex="100"
+      fxFlex.md="100"
+      fxFlex.sm="100"
+      fxFlex.xs="100"
+      fxLayout="column wrap"
+    >
+      <div fxLayout="row wrap" fxLayoutGap="5px">
+        <div
+          fxFlex="49"
+          fxFlex.lt-md="49"
+          fxFlex.sm="100"
+          fxLayout="column"
+          *ngIf="
+            !formInput.controls[properties.fileUpload].value;
+            else templateFileUpload
+          "
+        >
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Upload File<b>*</b></mat-label>
+            <input
+              matInput
+              placeholder="Upload File"
+              (click)="fileInput.click()"
+            />
+            <mat-icon (click)="fileInput.click()" matSuffix>upload</mat-icon>
+            <input
+              #fileInput
+              type="file"
+              id="fileUpload"
+              (change)="fileChange($event)"
+              accept=".csv"
+              class="hide-control"
+            />
+          </mat-form-field>
+        </div>
+        <ng-template #templateFileUpload>
+          <div fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100" fxLayout="column">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Uploaded File</mat-label>
+              <input
+                matInput
+                placeholder="Uploaded File"
+                formControlName="fileUpload"
+              />
+              <mat-icon
+                (click)="deleteFile(properties.fileUpload)"
+                matSuffix
+                >delete</mat-icon
+              >
+            </mat-form-field>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <div style="text-align: center">
+    <button
+      (click)="rolePostData()"
+      [disabled]="formInput.invalid"
+      mat-button
+      mat-raised-button
+      color="primary"
+    >
+      Submit
+    </button>
+  </div>
+</form>

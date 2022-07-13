@@ -1,0 +1,254 @@
+<div class="title">
+  <span class="margin-left-10">RM Form</span>
+  <mat-icon class="pull-left" (click)="onBack()">reply_all</mat-icon>
+</div>
+<form [formGroup]="formInput">
+  <!-- content here -->
+  <div fxLayout="row wrap">
+    <div
+      fxFlex="100"
+      fxFlex.md="100"
+      fxFlex.sm="100"
+      fxFlex.xs="100"
+      fxLayout="column wrap"
+    >
+      <div fxLayout="row wrap" fxLayoutGap="5px">
+        <div fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100" fxLayout="column">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Employee Id<b>*</b> </mat-label>
+            <input
+              matInput
+              formControlName="employeeId"
+              placeholder="Employee Id"
+            />
+          </mat-form-field>
+          <ng-container *ngIf="isModified(properties.employeeId)">
+            <mat-error
+              *ngIf="
+                isEmpty(properties.employeeId) ||
+                hasWhiteSpace(properties.employeeId)
+              "
+            >
+              Employee Id is <strong>required</strong>
+            </mat-error>
+          </ng-container>
+        </div>
+
+        <div fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100" fxLayout="column">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Employee Name<b>*</b> </mat-label>
+            <input
+              matInput
+              placeholder="Employee Name"
+              formControlName="employeeName"
+            />
+          </mat-form-field>
+          <ng-container *ngIf="isModified(properties.employeeName)">
+            <mat-error
+              *ngIf="
+                isEmpty(properties.employeeName) ||
+                hasWhiteSpace(properties.employeeName)
+              "
+            >
+              Employee Name is <strong>required</strong>
+            </mat-error>
+          </ng-container>
+        </div>
+
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Role<b>*</b> </mat-label>
+            <input matInput placeholder="Value" formControlName="role" />
+          </mat-form-field>
+          <ng-container *ngIf="isModified(properties.role)">
+            <mat-error
+              *ngIf="isEmpty(properties.role) || hasWhiteSpace(properties.role)"
+            >
+              Role is <strong>required</strong>
+            </mat-error>
+          </ng-container>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Sol Id<b>*</b> </mat-label>
+            <input matInput placeholder="Sol Id" formControlName="solId" />
+          </mat-form-field>
+          <ng-container *ngIf="isModified(properties.solId)">
+            <mat-error
+              *ngIf="
+                isEmpty(properties.solId) || hasWhiteSpace(properties.solId)
+              "
+            >
+              Sol Id is <strong>required</strong>
+            </mat-error>
+          </ng-container>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Branch Name<b>*</b> </mat-label>
+            <input
+              matInput
+              placeholder="Branch Name"
+              formControlName="branchName"
+            />
+          </mat-form-field>
+          <ng-container *ngIf="isModified(properties.branchName)">
+            <mat-error
+              *ngIf="
+                isEmpty(properties.branchName) ||
+                hasWhiteSpace(properties.branchName)
+              "
+            >
+              Branch Name is <strong>required</strong>
+            </mat-error>
+          </ng-container>
+        </div>
+
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Cluster Head<b>*</b> </mat-label>
+            <input
+              matInput
+              placeholder="Cluster Head"
+              formControlName="clusterHead"
+            />
+          </mat-form-field>
+          <ng-container *ngIf="isModified(properties.clusterHead)">
+            <mat-error
+              *ngIf="
+                isEmpty(properties.clusterHead) ||
+                hasWhiteSpace(properties.clusterHead)
+              "
+            >
+              Cluster Head is <strong>required</strong>
+            </mat-error>
+          </ng-container>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Circle<b>*</b> </mat-label>
+            <input matInput placeholder="Circle" formControlName="circle" />
+          </mat-form-field>
+          <ng-container *ngIf="isModified(properties.circle)">
+            <mat-error
+              *ngIf="
+                isEmpty(properties.circle) || hasWhiteSpace(properties.circle)
+              "
+            >
+              Circle is <strong>required</strong>
+            </mat-error>
+          </ng-container>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>RM Status<b>*</b> </mat-label>
+            <input matInput placeholder="RM Status" formControlName="rmStatus">
+          </mat-form-field>
+          <ng-container *ngIf="isModified(properties.rmStatus)">
+            <mat-error
+              *ngIf="
+                isEmpty(properties.rmStatus) || hasWhiteSpace(properties.rmStatus)
+              "
+            >
+              RM Status is <strong>required</strong>
+            </mat-error>
+          </ng-container>
+        </div>
+
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Branch Category<b>*</b> </mat-label>
+            <input
+              matInput
+              placeholder="Branch Category"
+              formControlName="branchCategory"
+            />
+          </mat-form-field>
+          <ng-container *ngIf="isModified(properties.branchCategory)">
+            <mat-error
+              *ngIf="
+                isEmpty(properties.branchCategory) ||
+                hasWhiteSpace(properties.branchCategory)
+              "
+            >
+              Branch Category is <strong>required</strong>
+            </mat-error>
+          </ng-container>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Region<b>*</b> </mat-label>
+            <input matInput placeholder="Region" formControlName="region" />
+          </mat-form-field>
+          <ng-container *ngIf="isModified(properties.region)">
+            <mat-error
+              *ngIf="
+                isEmpty(properties.region) || hasWhiteSpace(properties.region)
+              "
+            >
+              Region is <strong>required</strong>
+            </mat-error>
+          </ng-container>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Type<b>*</b> </mat-label>
+            <input matInput placeholder="Type" formControlName="type" />
+          </mat-form-field>
+          <ng-container *ngIf="isModified(properties.type)">
+            <mat-error
+              *ngIf="isEmpty(properties.type) || hasWhiteSpace(properties.type)"
+            >
+              Type is <strong>required</strong>
+            </mat-error>
+          </ng-container>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Status<b>*</b> </mat-label>
+            <mat-select matInput placeholder="Status" formControlName="status">
+            <mat-option
+            *ngFor="let userStatus of Status"
+            [value]="userStatus.value"
+          >
+            {{ userStatus.text }}
+          </mat-option>
+        </mat-select>
+          </mat-form-field>
+          <ng-container *ngIf="isModified(properties.status)">
+            <mat-error
+              *ngIf="
+                isEmpty(properties.status) || hasWhiteSpace(properties.status)
+              "
+            >
+              Status is <strong>required</strong>
+            </mat-error>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align: center">
+    <button
+    (click)="updatePostData()"
+    [disabled]="formInput.invalid"
+    *ngIf="isEdit"
+    mat-button
+    mat-raised-button
+    color="primary"
+    >Update</button>
+  <button
+  (click)="rolePostData()"
+  [disabled]="formInput.invalid"
+  *ngIf="!isEdit"
+  mat-button
+  mat-raised-button
+  color="primary"
+  >Submit</button>
+    <button
+      (click)="onBack()"
+      mat-button
+      mat-raised-button
+    >Cancel</button>   
+  </div>
+</form>

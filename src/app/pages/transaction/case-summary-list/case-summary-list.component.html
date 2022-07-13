@@ -1,0 +1,19 @@
+<div class="title">Case Summary
+</div>
+<mat-tab-group class="tab margin-bottom-10" (selectedTabChange)="tabClick($event,true,false)">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            All Cases
+        </ng-template>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            My Cases
+        </ng-template>
+    </mat-tab>
+</mat-tab-group>
+<app-data-table [tableData]="dataSource" [tableColumns]="displayColumns" [showDateFilter]="true" [isFilterable]="isFilterable"
+    [isPageable]="isPageable" [totalRecords]="totalRecords" [paginationSizes]="paginationSizes"
+    [defaultPageSize]="defaultPageSize" (sort)="sortData($event)" (filter)="filterData($event)"
+    (page)="pageData($event)" [rowActionIcon]="'info'" (rowAction)="rowAction($event)">
+</app-data-table>

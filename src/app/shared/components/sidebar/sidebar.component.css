@@ -1,0 +1,37 @@
+.sidenav_container {
+    min-width: 60px;
+    height: auto;
+}
+
+.user-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.menu-item {
+    border-bottom: 1px solid;
+}
+
+.menu-item>.active {
+    color: #ffffff !important;
+    
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.mat-tooltip {
+    font-size: 15px;
+    background: #81003c;
+    display: inline-block;
+
+}
+
+
+.example-tooltip-red {
+    background: #81003c;
+}

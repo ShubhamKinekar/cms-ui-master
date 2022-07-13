@@ -1,0 +1,67 @@
+.example-card {
+    max-width: 500px;
+    margin: 20px;
+    margin-top: 24px;
+    width: 500px;
+    height: 180px;
+    border-radius: 10px;
+    background-color: black;
+}
+
+.custom__row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.one,
+.two,
+.three {
+    width: 33%;
+    text-align: center;
+}
+
+mat-card-content {
+    height: 54px;
+    padding: 10px;
+}
+
+mat-card-title {
+    text-align: center;
+    padding: 10px;
+}
+
+.detail__button {
+    float: right;
+    margin-right: 31px;
+    height: 34px;
+    width: 109px;
+    border-radius: 5px;
+    background-color: #81003c;
+    color: white;
+}
+
+.grey {
+    background-color: #a0a3a8;
+}
+
+.golden {
+    background-color: #b6a464;
+}
+
+.purple {
+    background-color: #9384a5;
+}
+
+.light-purple {
+    background-color: #8f7b86;
+}
+
+.blue {
+    background-color: #6884ac;
+}
+
+.pink {
+    background-color: #f45774;
+}

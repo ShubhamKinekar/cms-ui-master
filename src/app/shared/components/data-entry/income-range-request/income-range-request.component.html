@@ -1,0 +1,38 @@
+<form [formGroup]="formInput">
+    <!-- content here -->
+    <div fxLayout="row wrap" fxLayoutGap="5px">
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Income Type</mat-label>
+                <mat-select placeholder="Income Type" formControlName="incomeType" (selectionChange)="onSelection($event.value)">
+                    <mat-option *ngFor="let incomeType of incomeTypes" value="{{ incomeType }}">{{ incomeType }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.incomeType)">
+                <mat-error *ngIf="
+            isEmpty(properties.incomeType) ||
+            hasWhiteSpace(properties.incomeType)
+          ">
+                    Income Type is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Income Range</mat-label>
+                <mat-select placeholder="Account Type" formControlName="incomeRangeId">
+                    <mat-option *ngFor="let income of incomeRanges" [value]="income">{{ income.description }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.incomeRangeId)">
+                <mat-error *ngIf="
+            isEmpty(properties.incomeRangeId) ||
+            hasWhiteSpace(properties.incomeRangeId)
+          ">
+                    Income Range is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+        </div>
+    </div>
+
+</form>

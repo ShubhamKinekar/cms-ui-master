@@ -1,0 +1,12 @@
+<mat-card class="example-card" [ngClass]="data.color">
+  <mat-card-title>{{data.title}}</mat-card-title>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div class="custom__row" *ngFor="let key of data.keys; index as indx">
+      <div class="one">{{key}}</div>
+      <div class="two">{{key? ":":""}}</div>
+      <div class="three">{{data.values[indx]? data.values[indx] : "0"}}</div>
+    </div>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+</mat-card>

@@ -1,0 +1,206 @@
+<form [formGroup]="formInput">
+    <!-- content here -->
+    <div fxLayout="row wrap" fxLayoutGap="5px">
+        <mat-toolbar>
+            <span>Family Flag for First Holder</span>
+        </mat-toolbar>
+        <div fxFlex="100" fxFlex.md="100" fxFlex.sm="100" fxLayout="row">
+            <mat-checkbox class="checkboxAlign" placeholder="Email ID" formControlName="fffhForEmailId">
+                Email ID
+            </mat-checkbox>
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email ID</mat-label>
+                <input matInput placeholder="Email ID" formControlName="fhEmailId" />
+            </mat-form-field>
+        </div>
+        <ng-container *ngIf="isModified(properties.fhEmailId)">
+            <mat-error *ngIf="
+        isEmpty(properties.fhEmailId) ||
+        hasWhiteSpace(properties.fhEmailId)
+      ">
+                Email ID is <strong>required</strong>
+            </mat-error>
+        </ng-container>
+        <mat-error *ngIf="hasError(properties.fhEmailId, validationErrorCodes.maxlength)">
+            Email ID can have <strong> maximum 30 characters</strong>
+        </mat-error>
+        <div fxFlex="100" fxFlex.md="100" fxFlex.sm="100" fxLayout="row">
+            <mat-checkbox class="checkboxAlign" placeholder="Mobile" formControlName="fhffForMobileNo">
+                Mobile
+            </mat-checkbox>
+            <div fxFlex="20" fxFlex.md="20" fxFlex.sm="100" fxLayout="row">
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>ISD code</mat-label>
+                    <!-- <input matInput placeholder="ISD code" formControlName="fhIsdCodeForMobileNo" /> -->
+                    <mat-select placeholder="ISD code"  formControlName="fhIsdCodeForMobileNo">
+                        <mat-option *ngFor=" let i of isdCodeList"  value="{{ i.cmsIsdId }}">{{i.cmsIsdName}}(+{{i.cmsIsdCode }})</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <ng-container *ngIf="isModified(properties.fhIsdCodeForMobileNo)">
+                <mat-error *ngIf="
+        isEmpty(properties.fhIsdCodeForMobileNo) ||
+        hasWhiteSpace(properties.fhIsdCodeForMobileNo)
+      ">
+                    ISD code is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+            <mat-error *ngIf="hasError(properties.fhIsdCodeForMobileNo, validationErrorCodes.maxlength)">
+                ISD code can have <strong> maximum 6 characters</strong>
+            </mat-error>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Mobile no </mat-label>
+                <input matInput placeholder="Mobile No" formControlName="fhOfMobileNo" />
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.fhOfMobileNo)">
+                <mat-error *ngIf="
+            isEmpty(properties.fhOfMobileNo) ||
+            hasWhiteSpace(properties.fhOfMobileNo)
+          ">
+                    Mobile No is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+            <mat-error *ngIf="hasError(properties.fhOfMobileNo, validationErrorCodes.maxlength)">
+                Mobile No can have <strong> maximum 13 characters</strong>
+            </mat-error>
+        </div>
+
+        <mat-toolbar>
+            <span>Family Flag for First Holder</span>
+        </mat-toolbar>
+        <div fxFlex="100" fxFlex.md="100" fxFlex.sm="100" fxLayout="row">
+            <mat-checkbox class="checkboxAlign" placeholder="Email ID" formControlName="shffForEmailId">
+                Email ID
+            </mat-checkbox>
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email ID</mat-label>
+                <input matInput placeholder="Email ID" formControlName="shEmailId" />
+            </mat-form-field>
+
+            <ng-container *ngIf="isModified(properties.shEmailId)">
+                <mat-error *ngIf="
+        isEmpty(properties.shEmailId) ||
+        hasWhiteSpace(properties.shEmailId)
+      ">
+                    Email ID is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+            <mat-error *ngIf="hasError(properties.shEmailId, validationErrorCodes.maxlength)">
+                Email ID can have <strong> maximum 50 characters</strong>
+            </mat-error>
+        </div>
+
+        <div fxFlex="100" fxFlex.md="100" fxFlex.sm="100" fxLayout="row">
+            <mat-checkbox class="checkboxAlign" placeholder="Mobile" formControlName="shffForMobileNo">
+                Mobile
+            </mat-checkbox>
+            <div fxFlex="20" fxFlex.md="20" fxFlex.sm="100" fxLayout="row">
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>ISD code</mat-label>
+                    <!-- <input matInput placeholder="ISD code" formControlName="fhIsdCodeForMobileNo" /> -->
+                    <mat-select placeholder="ISD code" formControlName="shIsdCodeForMobileNo">
+                        <mat-option *ngFor=" let i of isdCodeList"  value="{{ i.cmsIsdId }}">{{i.cmsIsdName}}(+{{i.cmsIsdCode }})</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <ng-container *ngIf="isModified(properties.shIsdCodeForMobileNo)">
+                <mat-error *ngIf="
+        isEmpty(properties.shIsdCodeForMobileNo) ||
+        hasWhiteSpace(properties.shIsdCodeForMobileNo)
+      ">
+                    ISD code is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+            <mat-error *ngIf="hasError(properties.shIsdCodeForMobileNo, validationErrorCodes.maxlength)">
+                ISD code can have <strong> maximum 6 characters</strong>
+            </mat-error>
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Mobile no </mat-label>
+                <input matInput placeholder="Mobile No" formControlName="shOfMobileNo" />
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.shOfMobileNo)">
+                <mat-error *ngIf="
+            isEmpty(properties.shOfMobileNo) ||
+            hasWhiteSpace(properties.shOfMobileNo)
+          ">
+                    Mobile No is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+            <mat-error *ngIf="hasError(properties.shOfMobileNo, validationErrorCodes.maxlength)">
+                Mobile No can have <strong> maximum 13 characters</strong>
+            </mat-error>
+        </div>
+
+        <mat-toolbar>
+            <span>Family Flag for Third Holder</span>
+        </mat-toolbar>
+        <div fxFlex="100" fxFlex.md="100" fxFlex.sm="100" fxLayout="row">
+            <mat-checkbox class="checkboxAlign" placeholder="Email ID" formControlName="thFfForEmailId">
+                Email ID
+            </mat-checkbox>
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email ID</mat-label>
+                <input matInput placeholder="Email ID" formControlName="thEmailId" />
+            </mat-form-field>
+        </div>
+        <ng-container *ngIf="isModified(properties.thEmailId)">
+            <mat-error *ngIf="
+        isEmpty(properties.thEmailId) ||
+        hasWhiteSpace(properties.thEmailId)
+      ">
+                Email ID is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="hasError(properties.thEmailId, validationErrorCodes.maxlength)">
+                Email ID can have <strong> maximum 50 characters</strong>
+            </mat-error>
+        </ng-container>
+
+        <div fxFlex="100" fxFlex.md="100" fxFlex.sm="100" fxLayout="row">
+            <mat-checkbox class="checkboxAlign" placeholder="Mobile" formControlName="thffForMobileNo">
+                Mobile
+            </mat-checkbox>
+            <div fxFlex="20" fxFlex.md="20" fxFlex.sm="100" fxLayout="row">
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>ISD code</mat-label>
+                    <!-- <input matInput placeholder="ISD code" formControlName="fhIsdCodeForMobileNo" /> -->
+                    <mat-select placeholder="ISD code" formControlName="thIsdCodeForMobileNo">
+                        <mat-option *ngFor=" let i of isdCodeList"  value="{{ i.cmsIsdId }}">{{i.cmsIsdName}}(+{{i.cmsIsdCode }})</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <ng-container *ngIf="isModified(properties.thIsdCodeForMobileNo)">
+                <mat-error *ngIf="
+        isEmpty(properties.thIsdCodeForMobileNo) ||
+        hasWhiteSpace(properties.thIsdCodeForMobileNo)
+      ">
+                    ISD code is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+            <mat-error *ngIf="hasError(properties.thIsdCodeForMobileNo, validationErrorCodes.maxlength)">
+                ISD code can have <strong> maximum 6 characters</strong>
+            </mat-error>
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Mobile no </mat-label>
+                <input matInput placeholder="Mobile No" formControlName="thOfMobileNo" />
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.thOfMobileNo)">
+                <mat-error *ngIf="
+            isEmpty(properties.thOfMobileNo) ||
+            hasWhiteSpace(properties.thOfMobileNo)
+          ">
+                    Mobile No is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+            <mat-error *ngIf="hasError(properties.thOfMobileNo, validationErrorCodes.maxlength)">
+                Mobile No can have <strong> maximum 13 characters</strong>
+            </mat-error>
+        </div>
+
+
+    </div>
+
+</form>

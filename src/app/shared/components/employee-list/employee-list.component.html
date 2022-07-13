@@ -1,0 +1,6 @@
+<div class="title">Employee</div>
+  <app-data-table [tableData]="dataSource" [tableColumns]="displayColumns" [isFilterable]="isFilterable"
+    [isPageable]="isPageable" [totalRecords]="totalRecords" [paginationSizes]="paginationSizes"
+    [defaultPageSize]="defaultPageSize" (sort)="sortData($event)" (filter)="filterData($event)"
+    (page)="pageData($event)" [showCheckBox]="true" [primaryKey]="'employeeId'" (selectAction)="selectAction($event)">
+  </app-data-table>

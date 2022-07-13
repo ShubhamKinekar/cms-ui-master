@@ -1,0 +1,17 @@
+<mat-toolbar>
+    <img src="../../../../assets/svg/axis-logo.svg"  routerLink = "/dashboard"/>
+    <div class="logo-bar primary-background-color">
+        <button *ngIf="isLoggedIn" mat-button #profileMenuTrigger="matMenuTrigger" [matMenuTriggerFor]="profile" class="white-color pull-right"  >
+      <span class="user-name">{{user && user.name? user.name : ''}}</span>
+      <mat-icon class="user-account" >account_circle</mat-icon>
+      
+    </button>
+    </div>
+</mat-toolbar>
+
+<!-- "profile" menu -->
+<mat-menu #profile="matMenu" [overlapTrigger]="false">
+    <button mat-menu-item  (click)="getUserProfile()"><mat-icon>face</mat-icon>User Details</button>
+    <button mat-menu-item><mat-icon>edit</mat-icon>Edit profile</button>
+    <button mat-menu-item (click)="logout()"><mat-icon>power_settings_new</mat-icon>Logout</button>
+</mat-menu>

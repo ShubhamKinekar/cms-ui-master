@@ -1,0 +1,13 @@
+<div class="title">
+    <span class="margin-left-10">CDSL Bank List</span>
+    <mat-icon class="pull-left" >reply_all</mat-icon>
+    
+    <button class="pull-right margin-right-10" mat-button mat-raised-button color="primary" routerLink="/admin/mastercdslbank/details/0">
+      New CDSL Bank
+    </button>
+   
+  </div>
+  
+  <app-data-table [tableData]="dataSource" [tableColumns]="displayColumns" [isFilterable]="isFilterable" [isPageable]="isPageable" [totalRecords]="totalRecords" [paginationSizes]="paginationSizes" [defaultPageSize]="defaultPageSize" (sort)="sortData($event)"
+  (filter)="filterData($event)" (page)="pageData($event)" [rowActionIcon]="'info'" (rowAction)="rowAction($event)">
+</app-data-table>
