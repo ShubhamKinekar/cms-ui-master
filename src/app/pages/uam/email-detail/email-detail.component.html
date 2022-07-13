@@ -1,0 +1,368 @@
+<div class="title">
+  <span class="margin-left-10">Email Form</span>
+  <mat-icon class="pull-left"  (click)="onBack()">reply_all</mat-icon>
+</div>
+<form [formGroup]="formInput">
+  <!-- content here -->
+  <div fxLayout="row wrap">
+    <div
+      fxFlex="100"
+      fxFlex.md="100"
+      fxFlex.sm="100"
+      fxFlex.xs="100"
+      fxLayout="column wrap"
+    >
+      <div fxLayout="row wrap" fxLayoutGap="5px">
+        <div fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100" fxLayout="column">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email Template<b>*</b></mat-label>
+            <input
+              matInput
+              placeholder="Email Template"
+              formControlName="emailTemplate"
+            >
+          </mat-form-field>
+          <ng-container *ngIf="isModified(properties.emailTemplate)">
+            <mat-error *ngIf="
+    isEmpty(properties.emailTemplate) ||
+    hasWhiteSpace(properties.emailTemplate)
+  ">
+                Email Template is <strong>required</strong>
+            </mat-error>
+        </ng-container>
+          
+        </div>
+
+          <div fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100" fxLayout="column">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email Status<b>*</b></mat-label>
+              <input
+                matInput
+                placeholder="Email Status"
+                formControlName="emailStatus"
+              >
+            </mat-form-field>
+            <ng-container *ngIf="isModified(properties.emailStatus)">
+              <mat-error *ngIf="
+      isEmpty(properties.emailStatus) ||
+      hasWhiteSpace(properties.emailStatus)
+    ">
+                  Email Status is <strong>required</strong>
+              </mat-error>
+          </ng-container>
+          </div>
+              
+            <div
+              fxFlex="49"
+              fxFlex.lt-md="49"
+              fxFlex.sm="100"
+              fxLayout="column"
+            >
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email Body<b>*</b></mat-label>
+                <textarea
+                  rows="5"
+                  matInput
+                  placeholder="Email Body"
+                  formControlName="emailBody"
+                ></textarea>
+              </mat-form-field>
+              <ng-container *ngIf="isModified(properties.emailBody)">
+                <mat-error *ngIf="
+        isEmpty(properties.emailBody) ||
+        hasWhiteSpace(properties.emailBody)
+      ">
+                    Email Body is <strong>required</strong>
+                </mat-error>
+            </ng-container>
+            </div>
+
+            <div
+                fxFlex="49"
+                fxFlex.lt-md="49"
+                fxFlex.sm="100"
+                fxLayout="column"
+              >
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Email Subject<b>*</b></mat-label>
+                  <input
+                    matInput
+                    placeholder="Email Subject"
+                    formControlName="emailSubject"
+                  />
+                </mat-form-field>
+                <ng-container *ngIf="isModified(properties.emailSubject)">
+                  <mat-error *ngIf="
+          isEmpty(properties.emailSubject) ||
+          hasWhiteSpace(properties.emailSubject)
+        ">
+                      Emial Subject is <strong>required</strong>
+                  </mat-error>
+              </ng-container>
+            </div>
+
+            <div
+                  fxFlex="49"
+                  fxFlex.lt-md="49"
+                  fxFlex.sm="100"
+                  fxLayout="column"
+                >
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Send To<b>*</b></mat-label>
+                    <textarea
+                      rows="4"
+                      matInput
+                      placeholder="Send To"
+                      formControlName="sendTo"
+                    ></textarea>
+                  </mat-form-field>
+                  <ng-container *ngIf="isModified(properties.sendTo)">
+                    <mat-error *ngIf="
+            isEmpty(properties.sendTo) ||
+            hasWhiteSpace(properties.sendTo)
+          ">
+                        Send To is <strong>required</strong>
+                    </mat-error>
+                </ng-container>
+            </div>
+
+            <div
+                    fxFlex="49"
+                    fxFlex.lt-md="49"
+                    fxFlex.sm="100"
+                    fxLayout="column">
+
+                    <mat-form-field appearance="outline" class="full-width">
+                      <mat-label>Send CC<b>*</b></mat-label>
+                      <textarea
+                        rows="5"
+                        matInput
+                        placeholder="Send CC"
+                        formControlName="sendCc"
+                      ></textarea>
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.sendCc)">
+                      <mat-error *ngIf="
+              isEmpty(properties.sendCc) ||
+              hasWhiteSpace(properties.sendCc)
+            ">
+                          Send CC is <strong>required</strong>
+                      </mat-error>
+                  </ng-container>
+            </div>
+
+                    <div
+                      fxFlex="49"
+                      fxFlex.lt-md="49"
+                      fxFlex.sm="100"
+                      fxLayout="column">
+
+                      <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Attachment Path<b>*</b></mat-label>
+                        <input
+                          matInput
+                          placeholder="Attachment Path"
+                          formControlName="attachmentPath"/>
+                        </mat-form-field>
+                        <ng-container *ngIf="isModified(properties.attachmentPath)">
+                          <mat-error *ngIf="
+                  isEmpty(properties.attachmentPath) ||
+                  hasWhiteSpace(properties.attachmentPath)
+                ">
+                              Attachment Path is <strong>required</strong>
+                          </mat-error>
+                      </ng-container>
+                    </div>
+
+                      <div
+                        fxFlex="49"
+                        fxFlex.lt-md="49"
+                        fxFlex.sm="100"
+                        fxLayout="column"
+                      >
+                        <mat-form-field appearance="outline" class="full-width">
+                          <mat-label>Failure Count<b>*</b></mat-label>
+                          <input
+                            matInput
+                            placeholder="Failure Count"
+                            formControlName="failureCount"
+                          />
+                        </mat-form-field>
+                        <ng-container *ngIf="isModified(properties.failureCount)">
+                          <mat-error *ngIf="
+                  isEmpty(properties.failureCount) ||
+                  hasWhiteSpace(properties.failureCount)
+                ">
+                              Failure Count is <strong>required</strong>
+                          </mat-error>
+                      </ng-container>
+                      </div>
+
+                      <div
+                        fxFlex="49"
+                        fxFlex.lt-md="49"
+                        fxFlex.sm="100"
+                        fxLayout="column"
+                      >
+                        <mat-form-field
+                          appearance="outline"
+                          class="full-width"
+                        >
+                          <mat-label>Transactional Id<b>*</b></mat-label>
+                          <input
+                            matInput
+                            placeholder="Transactional Id"
+                            formControlName="transactionalId"
+                          />
+                        </mat-form-field>
+                        <ng-container *ngIf="isModified(properties.transactionalId)">
+                          <mat-error *ngIf="
+                  isEmpty(properties.transactionalId) ||
+                  hasWhiteSpace(properties.transactionalId)
+                ">
+                              Transactional Id is <strong>required</strong>
+                          </mat-error>
+                      </ng-container>
+                      </div>
+
+                      <div
+                        fxFlex="49"
+                        fxFlex.md="49"
+                        fxFlex.sm="100"
+                        fxLayout="column"
+                      >
+                        <mat-form-field appearance="outline" class="full-width">
+                          <mat-label>Creation Date<b>*</b> </mat-label>
+                          <input
+                            matInput
+                            placeholder="Creation_Date"
+                            formControlName="creationDate"
+                          />
+                        </mat-form-field>
+                        <ng-container *ngIf="isModified(properties.creationDate)">
+                          <mat-error *ngIf="
+                  isEmpty(properties.creationDate) ||
+                  hasWhiteSpace(properties.creationDate)
+                ">
+                              Creation Date is <strong>required</strong>
+                          </mat-error>
+                      </ng-container>
+                      </div>
+
+                      <div
+                        fxFlex="49"
+                        fxFlex.md="49"
+                        fxFlex.sm="100"
+                        fxLayout="column"
+                      >
+                        <mat-form-field appearance="outline" class="full-width">
+                          <mat-label>Last Update Date<b>*</b> </mat-label>
+                          <input
+                            matInput
+                            placeholder="Last Update Date"
+                            formControlName="lastupdateDate"
+                          />
+                        </mat-form-field>
+                        <ng-container *ngIf="isModified(properties.lastupdateDate)">
+                          <mat-error *ngIf="
+                  isEmpty(properties.lastupdateDate) ||
+                  hasWhiteSpace(properties.lastupdateDate)
+                ">
+                              Last Update Date is <strong>required</strong>
+                          </mat-error>
+                      </ng-container>
+                      </div>
+
+                      <div
+                        fxFlex="49"
+                        fxFlex.md="49"
+                        fxFlex.sm="100"
+                        fxLayout="column"
+                      >
+                        <mat-form-field appearance="outline" class="full-width">
+                          <mat-label>Created By<b>*</b> </mat-label>
+                          <input
+                            matInput
+                            placeholder="Created By"
+                            formControlName="createdBy"
+                          />
+                        </mat-form-field>
+                        <ng-container *ngIf="isModified(properties.createdBy)">
+                          <mat-error *ngIf="
+                  isEmpty(properties.createdBy) ||
+                  hasWhiteSpace(properties.createdBy)
+                ">
+                              Created By is <strong>required</strong>
+                          </mat-error>
+                      </ng-container>
+                      </div>
+                      <div
+                        fxFlex="49"
+                        fxFlex.md="49"
+                        fxFlex.sm="100"
+                        fxLayout="column"
+                      >
+                        <mat-form-field appearance="outline" class="full-width">
+                          <mat-label>Last Update Login<b>*</b> </mat-label>
+                          <input
+                            matInput
+                            placeholder="Last Update Login"
+                            formControlName="lastupdateLogin"
+                          />
+                        </mat-form-field>
+                        <ng-container *ngIf="isModified(properties.lastupdateLogin)">
+                          <mat-error *ngIf="
+                  isEmpty(properties.lastupdateLogin) ||
+                  hasWhiteSpace(properties.lastupdateLogin)
+                ">
+                              Last Update Login is <strong>required</strong>
+                          </mat-error>
+                      </ng-container>
+                      </div>
+                      <div
+                        fxFlex="49"
+                        fxFlex.md="49"
+                        fxFlex.sm="100"
+                        fxLayout="column"
+                      >
+                        <mat-form-field appearance="outline" class="full-width">
+                          <mat-label>Last Update By<b>*</b> </mat-label>
+                          <input
+                            matInput
+                            placeholder="Last Update By"
+                            formControlName="lastupdateBy"
+                          />
+                        </mat-form-field>
+                        <ng-container *ngIf="isModified(properties.lastupdateBy)">
+                          <mat-error *ngIf="
+                  isEmpty(properties.lastupdateBy) ||
+                  hasWhiteSpace(properties.lastupdateBy)
+                ">
+                              Last Update By is <strong>required</strong>
+                          </mat-error>
+                      </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  <div style="text-align: center">
+                    <button
+                    mat-button
+                    mat-raised-button
+                    color="primary"
+                  >
+
+                    Submit
+                  </button>
+                    <button
+                      (click)="onBack()"
+                      mat-button
+                      mat-raised-button
+                    >
+                      Cancel
+                    </button>
+                   
+                    <!-- <button class="pull-right margin-right-10" mat-button mat-raised-button color="primary">Save</button> -->
+                  </div>
+                
+</form>

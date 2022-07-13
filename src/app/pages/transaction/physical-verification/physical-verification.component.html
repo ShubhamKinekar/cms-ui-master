@@ -1,0 +1,62 @@
+<div class="title">Physical Verification</div>
+<form [formGroup]="formInput">
+    <!-- content here -->
+    <div fxLayout="row wrap">
+        <div fxFlex="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" fxLayout="column wrap">
+            <div fxLayout="row wrap" fxLayoutGap="5px">
+                <div fxFlex="100" fxFlex.lt-md="100" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Barcode<b>*</b> </mat-label>
+                        <input matInput placeholder="Name" formControlName='barcode' />
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.barcode)">
+                        <mat-error *ngIf="
+                    isEmpty(properties.barcode) ||
+                    hasWhiteSpace(properties.barcode)
+                  ">
+                  Barcode is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div>
+                <!-- <div fxFlex="100" fxFlex.lt-md="100" fxFlex.sm="100" fxLayout="column" >
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Receipt Date</mat-label>
+                        <input matInput [matDatepicker]="picker" placeholder="Receipt Date"  formControlName="receiptDate" />
+                        <mat-datepicker-toggle matSuffix [for]="picker">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.receiptDate)">
+                        <mat-error *ngIf="
+                isEmpty(properties.receiptDate) ||
+                hasWhiteSpace(properties.receiptDate)
+              ">
+                            Receipt Date is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div> -->
+
+                <!-- <div fxFlex="100" fxFlex.lt-md="100" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Pod No<b>*</b> </mat-label>
+                        <input matInput placeholder="Name" formControlName='podNo' />
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.podNo)">
+                        <mat-error *ngIf="
+                    isEmpty(properties.podNo) ||
+                    hasWhiteSpace(properties.podNo)
+                  ">
+                  Pod No is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div> -->
+            </div>
+            <div>
+                <button class="pull-right  margin-right-10" mat-button mat-raised-button>Cancel</button>
+                <button class="pull-right margin-right-10" (click)="saveData(status.PhysicalVerification)" mat-button mat-raised-button color="primary">Submit</button>
+                <!-- <button class="pull-right margin-right-10" mat-button mat-raised-button color="primary">Save</button> -->
+            </div>
+
+        </div>
+    </div>
+</form>

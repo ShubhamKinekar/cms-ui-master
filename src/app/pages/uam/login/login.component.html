@@ -1,0 +1,73 @@
+<div class="login-container">
+    <div class="content-left">
+        <img src="../assets/images/login.png" height="auto" width="auto" />
+    </div>
+    <div class="content-right ">
+        <mat-card class="mat-elevation-z5 ">
+            <form [formGroup]="formInput">
+                <mat-card-subtitle>Welcome</mat-card-subtitle>
+                <mat-card-title class="main-color" style="font-size: 20px;">Scanned Workflow for Form Inward and Tracking
+                </mat-card-title>
+                <h2 class="main-color" style="font-size: 25px;"> (SWIFT)
+                </h2>
+                <mat-card-subtitle>Login</mat-card-subtitle>
+                <div fxLayout="column wrap">
+                    <div fxFlex="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" fxLayout="column wrap">
+                        <div fxFlex="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" fxLayout="column">
+                            <mat-form-field appearance="outline" class="full-width">
+                                <mat-label>Username</mat-label>
+                                <input matInput placeholder="username" formControlName='userName' />
+                                <mat-icon matSuffix>account_circle</mat-icon>
+                                <!-- <mat-hint>Hint</mat-hint> -->
+                            </mat-form-field>
+
+                            <ng-container *ngIf="isModified(properties.userName)">
+                                <mat-error *ngIf="
+                            isEmpty(properties.userName) || hasWhiteSpace(properties.userName)
+                          ">
+                                    Username is <strong>required</strong>
+                                </mat-error>
+                            </ng-container>
+                        </div>
+                        <div fxFlex="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" fxLayout="column">
+
+                            <mat-form-field appearance="outline" class="full-width">
+                                <mat-label>Password</mat-label>
+                                <input matInput placeholder="***********" type="password" formControlName='password' [type]="fieldTextType ? 'text' : 'password'" />
+                                <mat-icon [ngClass]="{
+                            'fa-eye-slash': !fieldTextType,
+                            'fa-eye': fieldTextType
+                          }" (click)="showPassword()" matSuffix>vpn_key</mat-icon>
+                                <!-- <mat-hint>Hint</mat-hint> -->
+                            </mat-form-field>
+
+                            <ng-container *ngIf="isModified(properties.password)">
+                                <mat-error *ngIf="
+                            isEmpty(properties.password) || hasWhiteSpace(properties.password)
+                          ">
+                                    Password is <strong>required</strong>
+                                </mat-error>
+                            </ng-container>
+                            <mat-error *ngIf="loginFailed"><strong>Invalid</strong> username and password Please try again
+                            </mat-error>
+
+                        </div>
+                    </div>
+                </div>
+                <mat-card-actions>
+
+                    <button mat-raised-button color="primary" [disabled]="!formInput.valid" (click)="login()">
+                        Login
+                    </button>
+                    <button mat-raised-button (click)="resetFormValue()">Cancel</button>
+                    <div>
+                        <a class="link-text primary-color" (click)="navigateToUrl()">
+                            Forgot/Change Your Password?
+                        </a>
+                    </div>
+                </mat-card-actions>
+
+            </form>
+        </mat-card>
+    </div>
+</div>

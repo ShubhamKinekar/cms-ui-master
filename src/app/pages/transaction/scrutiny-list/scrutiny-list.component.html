@@ -1,0 +1,24 @@
+<div class="title">Scrutiny Form
+    <button class="pull-right" mat-button mat-raised-button color="primary" routerLink="/scrutiny/allocate">
+        Allocation
+    </button>
+</div>
+
+<mat-tab-group class="tab margin-bottom-10" 
+(selectedTabChange)="tabClick($event,false,$event.index == 1)">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            All Scrutiny
+        </ng-template>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            Allocated To Me
+        </ng-template>
+    </mat-tab>
+</mat-tab-group>
+
+<app-data-table [tableData]="dataSource" [tableColumns]="displayColumns" [isFilterable]="isFilterable" [isPageable]="isPageable" [totalRecords]="totalRecords" [paginationSizes]="paginationSizes" [defaultPageSize]="defaultPageSize" (sort)="sortData($event)"
+    (filter)="filterData($event)" (page)="pageData($event)" [rowActionIcon]="'info'" (rowAction)="rowAction($event)"
+    [unlockStatus]="status.ScrutinyPending">
+</app-data-table>

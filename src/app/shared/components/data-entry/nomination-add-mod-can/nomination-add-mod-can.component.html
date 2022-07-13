@@ -1,0 +1,33 @@
+<form [formGroup]="formInput">
+    <!-- content here -->
+    <div fxLayout="row wrap" fxLayoutGap="5px">
+    <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Bank MICR code</mat-label>
+            <input matInput placeholder="Bank MICR code" formControlName="bankName" />
+        </mat-form-field>
+        <ng-container *ngIf="isModified(properties.bankName)">
+            <mat-error *ngIf="
+        isEmpty(properties.bankName) ||
+        hasWhiteSpace(properties.bankName)
+      ">
+                Bank MICR code is <strong>required</strong>
+            </mat-error>
+        </ng-container>
+    </div>
+    <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column ">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Bank MICR code</mat-label>
+            <input matInput placeholder="Bank MICR code" formControlName="bankCode" />
+        </mat-form-field>
+        <ng-container *ngIf="isModified(properties.bankCode)">
+            <mat-error *ngIf="
+            isEmpty(properties.bankCode) ||
+            hasWhiteSpace(properties.bankCode)
+          ">
+                Bank MICR code is <strong>required</strong>
+            </mat-error>
+        </ng-container>
+    </div>
+    </div>
+</form>

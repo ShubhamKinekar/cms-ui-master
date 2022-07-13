@@ -1,0 +1,19 @@
+<div>
+    <div>
+        <div class="row">
+            <div *ngIf="!disabled">
+                <div class="row form-group col-md-12 push-15-t">
+                    <div class="col-md-5 text-center push-10-t">
+                        <button class="btn btn-primary justify-content-center align-self-center m-1 col-md-5" type="button" (click)="fileInput.click()"> {{ buttonText | translate }}</button>
+                    </div>
+                </div>
+                <button class="btn btn-primary m-1" *ngIf="!dragAndDrop" type="button" (click)="fileInput.click()"> 
+                Upload
+          </button>
+            </div>
+            <input style="display: none" type="file" onclick="this.value = null" (change)="onFileChanged($event.target.files)" #fileInput [multiple]="multiple ? true : false" />
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,26 @@
+<div class="title">
+    <span class="margin-left-10">Checker Allocation</span>
+    <mat-icon class="pull-left" (click)="onBack()">reply_all</mat-icon>
+    <button class="pull-right" mat-button mat-raised-button color="primary" [disabled]="isDisabled()" (click)="allocated()">
+        Allocate
+    </button>
+</div>
+
+<form [formGroup]="formInput">
+    <div fxLayout="row wrap" fxLayoutGap="5px">
+        <div fxFlex="100" fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" fxLayout="column wrap">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Allocate User</mat-label>
+                <mat-select formControlName="allocatedUser">
+                    <mat-option *ngFor="let res of allocatedUserList" value="{{ res.userId }}">
+                        <span>{{ res.name }}</span>
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+    </div>
+    <app-data-table [showCheckBox]="true" [tableData]="dataSource" [tableColumns]="displayColumns" [isFilterable]="isFilterable" [isPageable]="isPageable" [totalRecords]="totalRecords" [paginationSizes]="paginationSizes" [defaultPageSize]="defaultPageSize"
+        (sort)="sortData($event)" (filter)="filterData($event)" (page)="pageData($event)" (rowAction)="rowAction($event)" [primaryKey]="'cmsCheckerId'" (selectAction)="selectAction($event)">
+    </app-data-table>
+</form>

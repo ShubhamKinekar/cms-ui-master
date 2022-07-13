@@ -1,0 +1,25 @@
+<div class="title">Data Entry Form
+    <button class="pull-right" mat-button mat-raised-button color="primary" (click)="navigateToUrl('/data-entry/allocate')">
+      Allocation
+  </button>
+
+</div>
+
+<mat-tab-group class="tab margin-bottom-10" 
+(selectedTabChange)="tabClick($event,false,$event.index == 1)">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            All Data Entry
+        </ng-template>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            Allocated To Me
+        </ng-template>
+    </mat-tab>
+</mat-tab-group>
+
+<app-data-table [tableData]="dataSource" [tableColumns]="displayColumns" [isFilterable]="isFilterable" [isPageable]="isPageable" [totalRecords]="totalRecords" [paginationSizes]="paginationSizes" [defaultPageSize]="defaultPageSize" (sort)="sortData($event)"
+    (filter)="filterData($event)" (page)="pageData($event)" [rowActionIcon]="'info'" (rowAction)="rowAction($event)"
+    [unlockStatus]="status.DataEntryPending">
+</app-data-table>

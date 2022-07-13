@@ -1,0 +1,29 @@
+<div class="sidenav_container" [@onSideNavChange]="sideNavState ? 'open' : 'close'">
+  <div fxLayout="column" fxLayoutGap="10px" style="height: 100%">
+    <div>
+      <mat-nav-list>
+        <div *ngFor="let page of pages">
+          <a class="menu-item primary-border-color" [routerLink]="[page.link]"
+            [routerLinkActive]="['active', 'primary-background-color','white-color']" mat-list-item
+            *ngIf="checkPermission(page)">
+            <mat-icon matTooltip="{{ page?.name }}" class="tooltip"
+              [ngClass]="isRouteActive(page) ? 'white-color' : 'primary-color'" style="padding-right: 5px">{{ page?.icon
+              }}
+            </mat-icon>
+            <span [ngClass]="isRouteActive(page) ? 'white-color' : 'primary-color'"
+              [@animateText]="linkText ? 'show' : 'hide'">{{ page?.name }}
+            </span>
+          </a>
+        </div>
+      </mat-nav-list>
+    </div>
+  </div>
+
+  <span class="spacer"></span>
+  <div fxLayout="row" fxLayoutAlign="end center" style="padding: 0px 10px">
+    <button class="margin primary-border-color" style="background-color: #81003c;" mat-mini-fab (click)="onSinenavToggle()">
+      <mat-icon [inline]="true" class="mat-icon-large" *ngIf="sideNavState">arrow_left</mat-icon>
+      <mat-icon [inline]="true" class="mat-icon-large" *ngIf="!sideNavState">arrow_right</mat-icon>
+    </button>
+  </div>
+</div>

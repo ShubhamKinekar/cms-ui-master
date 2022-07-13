@@ -1,0 +1,43 @@
+.login-container {
+    font-family: arial;
+    font-size: 24px;
+    width: 100%;
+    height: calc(100vh - 110px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.mat-card{
+    width: 500px;
+}
+.mat-raised-button {
+    width: 30%;
+    margin-left: 10px;
+}
+
+.content-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.link-text primary-color {
+    margin-top: 12px;
+    font-size: medium;
+}
+
+.mat-error {
+    display: block;
+    font-size: 15px;
+    margin-top: -15px;
+    text-align: left;
+}

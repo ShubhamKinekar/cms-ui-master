@@ -1,0 +1,18 @@
+<div class="title">
+    <span class="margin-left-10">Batch Master List</span>
+    <mat-icon class="pull-left" (click)="onBack()">reply_all</mat-icon>
+    
+    <button class="pull-right margin-right-10" mat-button mat-raised-button color="primary" (click)="navigateToUrl('/import-export/batchmaster/details/0')">
+      New Batch Master
+    </button>
+   
+  </div>
+
+  
+  
+  <app-data-table [tableData]="dataSource" [tableColumns]="displayColumns" [isFilterable]="isFilterable" [isPageable]="isPageable" [totalRecords]="totalRecords" [paginationSizes]="paginationSizes" [defaultPageSize]="defaultPageSize" (sort)="sortData($event)"
+  (filter)="filterData($event)" (page)="pageData($event)" [rowActionIcon]="'download'" (rowAction)="rowAction($event)">
+</app-data-table>
+
+
+<!-- <button (click)="downloadFile()">Download</button> -->

@@ -1,0 +1,408 @@
+<div class="title">
+    <span class="margin-left-10">Scrutiny Form</span>
+    <mat-icon class="pull-left" (click)="onBack()">reply_all</mat-icon>
+    <div>
+        <span class="marign-top--10 sub-title pull-right">
+            {{ isExistingUser ? 'Existing Client/Customer' : 'New Client/Customer' }}
+        </span>
+        <mat-slide-toggle [disabled]="disableForm"  [checked]="isExistingUser"
+            (change)="userTypeChange(!isExistingUser)" class="marign-top--10 pull-right">
+        </mat-slide-toggle>
+        <!-- <mat-slide-toggle class="marign-top--10 pull-right" (change)="setUserType($event)">{{isExistingUser}}</mat-slide-toggle> -->
+    </div>
+    <button class="pull-right" mat-button mat-raised-button color="primary" *ngIf="isholdButton"
+        (click)="allocateToCurrentUser(serviceType.Scrutiny,'cmsScrutinyId',status.ScrutinyAllocated,'Scrunity Unhold')">
+        Unhold
+    </button>
+    <button class=".title button pull-right" mat-button mat-raised-button color="primary" *ngIf="allocateButton"
+        (click)="allocateToCurrentUser(serviceType.Scrutiny,'cmsScrutinyId',status.ScrutinyAllocated,'Scrunity Allocated')">
+        Allocate Me
+    </button>
+</div>
+<form [formGroup]="formInput">
+    <div fxLayout="row wrap">
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxFlex.xs="100" fxLayout="column wrap">
+            <div fxLayout="row wrap" fxLayoutGap="5px">
+                <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Barcode<b *ngIf="isRequiredField">*</b></mat-label>
+                        <input matInput placeholder="Barcode" formControlName="barcode" oninput="this.value = this.value.toUpperCase()" />
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.barcode)">
+                        <mat-error *ngIf="
+                isEmpty(properties.barcode) || hasWhiteSpace(properties.barcode)
+              ">
+                            Barcode is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div>
+
+                <!-- <div fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>PAN Number</mat-label>
+                        <input matInput placeholder="{{ panFilterPlaceHolder }}" aria-label="State" [matAutocomplete]="auto" [formControl]="formInput.controls[properties.panNo]" />
+                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onPanSelection($event.option.value)">
+                            <mat-option *ngIf="panLoading" class="is-loading" [disabled]="true">{{ panFilterLoadingText }}
+                            </mat-option>
+                            <ng-container *ngIf="!panLoading">
+                                <mat-option *ngFor="let pan of panNos" [value]="pan" [disabled]="pan == noRecordFound">
+                                    <span>{{ pan }}</span>
+                                </mat-option>
+                            </ng-container>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.panNo)">
+                        <mat-error *ngIf="
+                isEmpty(properties.panNo) || hasWhiteSpace(properties.panNo)
+              ">
+                            PAN Number is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div> -->
+
+                <div *ngIf="!disableForm || !(selectedRequestTypes && selectedRequestTypes.length > 0)" fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Request Type<b *ngIf="isRequiredField || requestNewUser">*</b></mat-label>
+                        <mat-select placeholder="Request Type" formControlName="requestType" multiple
+                            (selectionChange)="onRequestTypeSelection($event.value)">
+                            <mat-option *ngFor="let request of requestTypeList" [value]="request">{{ request.value
+                                }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.requestType)">
+                        <mat-error *ngIf="
+              isEmpty(properties.requestType) ||
+              hasWhiteSpace(properties.requestType)
+            ">
+                            Request Type is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div>
+                <div *ngIf="disableForm && selectedRequestTypes && selectedRequestTypes.length > 0" fxFlex="100" fxFlex.xl="100" fxFlex.lg="100" fxFlex.md="100" fxFlex.sm="100"
+                    fxFlex.xs="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Request Type<b *ngIf="isRequiredField">*</b></mat-label>
+                        <input matInput *ngFor="let request of selectedRequestTypes" readonly [value]="request.value" />
+                    </mat-form-field>
+                </div>
+                <div fxFlex="100" fxFlex.lt-md="100" fxFlex.sm="100" fxLayout="column" *ngIf="isVisibledata">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Request Type Other <b>*</b></mat-label>
+                        <input matInput placeholder="Request Type Other" formControlName="requesttypeOther" />
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.requesttypeOther)">
+                        <mat-error *ngIf="
+                isEmpty(properties.requesttypeOther) ||
+                hasWhiteSpace(properties.requesttypeOther)
+              ">
+                            Request Type Other is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div>
+
+                <div fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label> Changes Are Applicable To<b *ngIf="isRequiredField">*</b></mat-label>
+                        <mat-select placeholder="Changes Are Applicable To"
+                            (selectionChange)="onChangesApplicableSelection($event.value)"
+                            formControlName="changesApplicableTo" multiple>
+                            <mat-option *ngFor="let ss of changesApplicableList" [value]="ss"
+                                [disabled]="checkDematAccount(ss)">{{ ss.value }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.changesApplicableTo)">
+                        <mat-error *ngIf="
+                    isEmpty(properties.changesApplicableTo) ||
+                    hasWhiteSpace(properties.changesApplicableTo)
+                  ">
+                            Changes Are Applicable To is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div>
+                <!-- <div fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Trading Account Number</mat-label>
+                        <mat-select placeholder="Trading Account Number" formControlName="tradingAccountNo" (selectionChange)="
+                onTradingDematSelection($event.value, 'clientId')
+              ">
+                            <mat-option *ngFor="let tradingId of tradingAccountNos" [value]="tradingId">
+                                <span>{{ tradingId }}</span>
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.tradingAccountNo)">
+                        <mat-error *ngIf="
+                isEmpty(properties.barcode) ||
+                hasWhiteSpace(properties.tradingAccountNo)
+              ">
+                            Trading Account No is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div>
+
+                <div fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Demat Account Number</mat-label>
+                        <mat-select placeholder="Demat Account Number" formControlName="dematAccountNo" (selectionChange)="
+                onTradingDematSelection($event.value, 'dpAccNo')
+              ">
+                            <mat-option *ngFor="let demantAccountNo of dematAccountNos" [value]="demantAccountNo">
+                                <span>{{ demantAccountNo }}</span>
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.dematAccountNo)">
+                        <mat-error *ngIf="
+                isEmpty(properties.dematAccountNo) ||
+                hasWhiteSpace(properties.dematAccountNo)
+              ">
+                            Demat Account Number is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div>
+
+                <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Client Name Trading</mat-label>
+                        <input matInput placeholder="Client Name Trading" formControlName="clientNameTrading" />
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.clientNameTrading)">
+                        <mat-error *ngIf="
+                isEmpty(properties.clientNameTrading) ||
+                hasWhiteSpace(properties.clientNameTrading)
+              ">
+                            Client Name Trading is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div>
+
+                <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Client Name Demat</mat-label>
+                        <input matInput placeholder="Client Name Demat" formControlName="clientNameDemat" />
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.clientNameDemat)">
+                        <mat-error *ngIf="
+                isEmpty(properties.clientNameDemat) ||
+                hasWhiteSpace(properties.clientNameDemat)
+              ">
+                            Client Name Demat is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div> -->
+
+                <div fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Branch Code & Email</mat-label>
+                        <input matInput placeholder="Branch Code Email" formControlName="branchCode"
+                         />
+                        <mat-icon (click)="searchBranch()" matSuffix>search</mat-icon>
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.branchCode)">
+                        <mat-error *ngIf="
+                isEmpty(properties.branchCode) ||
+                hasWhiteSpace(properties.branchCode)
+              ">
+                            Branch Code & Email is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>RM Code & Email</mat-label>
+                    <textarea matInput readonly>{{rmCodes}}</textarea>
+                </mat-form-field>
+
+                <app-pan-card-trading-demat [parentForm]="formInput" [data]="entity"
+                    [isPanDetailsRequired]="isRequiredField" [isTrading]="istrading" [isDemat]="isdemat">
+                </app-pan-card-trading-demat>
+                <!-- <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label> Employee code RM</mat-label>
+                        <input matInput placeholder="Employee code RM" formControlName="employeeCodeRm" />
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.employeeCodeRm)">
+                        <mat-error *ngIf="
+                isEmpty(properties.employeeCodeRm) ||
+                hasWhiteSpace(properties.employeeCodeRm)
+              ">
+                            Employee code RM is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div> -->
+
+                <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Scrutiny Status<b>*</b></mat-label>
+                        <mat-select placeholder="Scrutiny Status" (selectionChange)="onStatusSelection($event.value)"
+                            formControlName="scrutinyStatus">
+                            <mat-option *ngFor="let Scrutiny of scrutinyStatusList"
+                                value="{{ Scrutiny.cmsMasterLovId }}">{{ Scrutiny.value }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.scrutinyStatus)">
+                        <mat-error *ngIf="
+                isEmpty(properties.scrutinyStatus) ||
+                hasWhiteSpace(properties.scrutinyStatus)
+              ">
+                            Scrutiny Status is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div>
+
+                <div *ngIf="!disableForm && isRejectStatusSelected" fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100"
+                    fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Rejection Remarks <b *ngIf="isRejectStatusSelected">*</b></mat-label>
+                        <mat-select placeholder="Rejection Remark" formControlName="rejectionRemarks" multiple
+                            (selectionChange)="onRejectRemarkSelection($event.value)">
+                            <mat-option *ngFor="let rr of filteredRejectionRemarks" value="{{ rr.cmsMasterLovSub }}">{{
+                                rr.value }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.rejectionRemarks)">
+                        <mat-error *ngIf="
+                  isEmpty(properties.rejectionRemarks) ||
+                  hasWhiteSpace(properties.rejectionRemarks)
+                ">
+                            Rejection Remarks is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div>
+                <div *ngIf="disableForm && isRejectStatusSelected" fxFlex="100" fxFlex.xl="100" fxFlex.lg="100"
+                    fxFlex.md="100" fxFlex.sm="100" fxFlex.xs="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Rejection Remarks <b *ngIf="isRejectStatusSelected">*</b></mat-label>
+                        <input matInput *ngFor="let rejectionRemark of selecteddRejectionRemarks" readonly
+                            [value]="rejectionRemark.value" />
+                    </mat-form-field>
+                </div>
+                <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Scrutiny Remark</mat-label>
+                        <input matInput placeholder="Scrutiny Remark" formControlName="scrutinyRemark" />
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.scrutinyRemark)">
+                        <mat-error *ngIf="
+                isEmpty(properties.scrutinyRemark) ||
+                hasWhiteSpace(properties.scrutinyRemark)
+              ">
+                            Scrutiny Remark is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div>
+
+
+                <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column"
+                    *ngIf="isRejectStatusSelected && isOtherRejectionSelected">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Rejection Remark Input</mat-label>
+                        <input matInput placeholder="Rejection Remark Input" formControlName="otherRejectionRemarks" />
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.otherRejectionRemarks)">
+                        <mat-error *ngIf="
+                isEmpty(properties.otherRejectionRemarks) ||
+                hasWhiteSpace(properties.otherRejectionRemarks)
+              ">
+                            Rejection Remark Input is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div>
+
+                <!-- <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Branch Code</mat-label>
+                        <input matInput placeholder="Branch Code" formControlName="branchCodeEmail" />
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.branchCodeEmail)">
+                        <mat-error *ngIf="
+                isEmpty(properties.branchCodeEmail) || hasWhiteSpace(properties.branchCodeEmail)
+              ">
+                            Branch Code is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div> -->
+
+                <!-- <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Employee Code of RM</mat-label>
+                        <input matInput placeholder="Employee Code of RM" formControlName="employeeCodeRm" />
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.employeeCodeRm)">
+                        <mat-error *ngIf="
+                isEmpty(properties.employeeCodeRm) || hasWhiteSpace(properties.employeeCodeRm)
+              ">
+                            Employee Code of RM is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div> -->
+
+                <div fxFlex="49" fxFlex.lt-md="49" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>BA Code </mat-label>
+                        <input matInput placeholder="BA Code" formControlName="bacode" />
+                        <mat-icon *ngIf="!disableForm" (click)="onBranchCodeSelection()" matSuffix>search</mat-icon>
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.bacode)">
+                        <mat-error *ngIf="
+                isEmpty(properties.bacode) ||
+                hasWhiteSpace(properties.bacode)
+              ">
+                            BA Code is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div>
+
+                <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Customer Email</mat-label>
+                        <input matInput placeholder="Customer Email" formControlName="customerEmail" />
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.customerEmail)">
+                        <mat-error *ngIf="
+                isEmpty(properties.customerEmail) || hasWhiteSpace(properties.customerEmail)
+              ">
+                            Customer Email is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div>
+
+                <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxLayout="column">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Customer Mobile</mat-label>
+                        <input matInput placeholder="Customer Mobile" formControlName="customerMobile" />
+                    </mat-form-field>
+                    <ng-container *ngIf="isModified(properties.customerMobile)">
+                        <mat-error *ngIf="
+                isEmpty(properties.customerMobile) || hasWhiteSpace(properties.customerMobile)
+              ">
+                            Customer Mobile is <strong>required</strong>
+                        </mat-error>
+                    </ng-container>
+                </div>
+
+            </div>
+        </div>
+        <div fxFlex="49" fxFlex.md="49" fxFlex.sm="100" fxFlex.xs="100" fxLayout="column wrap">
+            <app-pdf-view [fileUpload1]="entity.fileUpload1" [fileUpload2]="entity.fileUpload2"
+                [fileUpload3]="entity.fileUpload3"></app-pdf-view>
+        </div>
+    </div>
+    <mat-checkbox [checked]="docReceived" formControlName="docReceived" disabled>I confirm that the original request /
+        application form and the physical documents are in my custody and I undertake to courier it to the Central
+        Operations team within one day of receiving approval.</mat-checkbox><br>
+    <br>
+    <div *ngIf="!disableForm">
+        <button type="button" (click)="saveData(status.ScrutinyInprocess)" mat-button mat-raised-button color="primary">
+            Save
+        </button>
+        <button type="button" (click)="saveData()" [disabled]="!formInput.valid" mat-button mat-raised-button
+            color="primary">
+            Submit
+        </button>
+        <button type="button" (click)="onBack()" mat-button mat-raised-button color="primary">
+            Cancel
+        </button>
+    </div>
+</form>

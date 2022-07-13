@@ -1,0 +1,16 @@
+<h1 style="text-align: center;">Welcome to Scanned Workflow for Form Inward and Tracking (SWIFT)</h1>
+
+<h1 style="text-align: center;">{{buildReleasedMsg}} </h1>
+
+<mat-grid-list cols="2" rowHeight="3:1" *ngIf="dashhboardCardData">
+
+    <mat-grid-tile><app-card *ngIf="dashhboardCardData.length > 0"[data]="dashhboardCardData[0]"></app-card></mat-grid-tile>
+    <mat-grid-tile><app-card *ngIf="dashhboardCardData.length > 1" [data]="dashhboardCardData[1]"></app-card></mat-grid-tile>
+    <mat-grid-tile><app-card *ngIf="dashhboardCardData.length > 2" [data]="dashhboardCardData[2]"></app-card></mat-grid-tile>
+    <mat-grid-tile><app-card *ngIf="dashhboardCardData.length > 3" [data]="dashhboardCardData[3]"></app-card></mat-grid-tile>
+    <mat-grid-tile><app-card *ngIf="dashhboardCardData.length > 4" [data]="dashhboardCardData[4]"></app-card></mat-grid-tile>
+    <!-- <mat-grid-tile><app-card [data]="dashhboardCardData[5]"></app-card></mat-grid-tile> -->
+    <div *ngIf="dashhboardCardData.length < 0">
+        <h1>Welcome to CMS Application !</h1>
+    </div>
+</mat-grid-list>

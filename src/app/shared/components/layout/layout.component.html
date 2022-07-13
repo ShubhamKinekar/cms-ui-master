@@ -1,0 +1,14 @@
+<app-header [isLoggedIn]="isLoggedIn" [user]="user"></app-header>
+<mat-sidenav-container>
+  <mat-sidenav #leftSidenav mode="side" opened fixedInViewport="true" class="side-nav">
+    <app-sidebar *ngIf="isLoggedIn"></app-sidebar>
+  </mat-sidenav>
+  <mat-sidenav-content fixedInViewport="true"
+    class="side-content"
+    [@onMainContentChange]="onSideNavChange ? 'open' : 'close'"
+  >
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,12 @@
+::ng-deep.mat-dialog-container{
+    padding: 25px ;
+}
+
+.container{
+    width: 400px;
+    text-align: center;
+}
+
+.msg{
+    font-size: 22px;
+}
